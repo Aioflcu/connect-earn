@@ -17,6 +17,8 @@ import { Route as FreelancersRouteImport } from './routes/freelancers'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
 import { Route as FreelancersIdRouteImport } from './routes/freelancers.$id'
+import { Route as DashboardFreelancerRouteImport } from './routes/dashboard.freelancer'
+import { Route as DashboardClientRouteImport } from './routes/dashboard.client'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -58,6 +60,16 @@ const FreelancersIdRoute = FreelancersIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => FreelancersRoute,
 } as any)
+const DashboardFreelancerRoute = DashboardFreelancerRouteImport.update({
+  id: '/dashboard/freelancer',
+  path: '/dashboard/freelancer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardClientRoute = DashboardClientRouteImport.update({
+  id: '/dashboard/client',
+  path: '/dashboard/client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,6 +78,8 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/post-job': typeof PostJobRoute
   '/signup': typeof SignupRoute
+  '/dashboard/client': typeof DashboardClientRoute
+  '/dashboard/freelancer': typeof DashboardFreelancerRoute
   '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
@@ -76,6 +90,8 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/post-job': typeof PostJobRoute
   '/signup': typeof SignupRoute
+  '/dashboard/client': typeof DashboardClientRoute
+  '/dashboard/freelancer': typeof DashboardFreelancerRoute
   '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
@@ -87,6 +103,8 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/post-job': typeof PostJobRoute
   '/signup': typeof SignupRoute
+  '/dashboard/client': typeof DashboardClientRoute
+  '/dashboard/freelancer': typeof DashboardFreelancerRoute
   '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
@@ -99,6 +117,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/post-job'
     | '/signup'
+    | '/dashboard/client'
+    | '/dashboard/freelancer'
     | '/freelancers/$id'
     | '/jobs/$jobId'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +129,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/post-job'
     | '/signup'
+    | '/dashboard/client'
+    | '/dashboard/freelancer'
     | '/freelancers/$id'
     | '/jobs/$jobId'
   id:
@@ -119,6 +141,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/post-job'
     | '/signup'
+    | '/dashboard/client'
+    | '/dashboard/freelancer'
     | '/freelancers/$id'
     | '/jobs/$jobId'
   fileRoutesById: FileRoutesById
@@ -130,6 +154,8 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   PostJobRoute: typeof PostJobRoute
   SignupRoute: typeof SignupRoute
+  DashboardClientRoute: typeof DashboardClientRoute
+  DashboardFreelancerRoute: typeof DashboardFreelancerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -190,6 +216,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FreelancersIdRouteImport
       parentRoute: typeof FreelancersRoute
     }
+    '/dashboard/freelancer': {
+      id: '/dashboard/freelancer'
+      path: '/dashboard/freelancer'
+      fullPath: '/dashboard/freelancer'
+      preLoaderRoute: typeof DashboardFreelancerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/client': {
+      id: '/dashboard/client'
+      path: '/dashboard/client'
+      fullPath: '/dashboard/client'
+      preLoaderRoute: typeof DashboardClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -222,6 +262,8 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   PostJobRoute: PostJobRoute,
   SignupRoute: SignupRoute,
+  DashboardClientRoute: DashboardClientRoute,
+  DashboardFreelancerRoute: DashboardFreelancerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
