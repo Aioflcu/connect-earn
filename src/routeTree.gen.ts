@@ -9,16 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
 import { Route as PostJobRouteImport } from './routes/post-job'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as FreelancersRouteImport } from './routes/freelancers'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
 import { Route as FreelancersIdRouteImport } from './routes/freelancers.$id'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PostJobRoute = PostJobRouteImport.update({
   id: '/post-job',
   path: '/post-job',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JobsRoute = JobsRouteImport.update({
@@ -51,7 +63,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
+  '/login': typeof LoginRoute
   '/post-job': typeof PostJobRoute
+  '/signup': typeof SignupRoute
   '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
@@ -59,7 +73,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
+  '/login': typeof LoginRoute
   '/post-job': typeof PostJobRoute
+  '/signup': typeof SignupRoute
   '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
@@ -68,7 +84,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
+  '/login': typeof LoginRoute
   '/post-job': typeof PostJobRoute
+  '/signup': typeof SignupRoute
   '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
@@ -78,7 +96,9 @@ export interface FileRouteTypes {
     | '/'
     | '/freelancers'
     | '/jobs'
+    | '/login'
     | '/post-job'
+    | '/signup'
     | '/freelancers/$id'
     | '/jobs/$jobId'
   fileRoutesByTo: FileRoutesByTo
@@ -86,7 +106,9 @@ export interface FileRouteTypes {
     | '/'
     | '/freelancers'
     | '/jobs'
+    | '/login'
     | '/post-job'
+    | '/signup'
     | '/freelancers/$id'
     | '/jobs/$jobId'
   id:
@@ -94,7 +116,9 @@ export interface FileRouteTypes {
     | '/'
     | '/freelancers'
     | '/jobs'
+    | '/login'
     | '/post-job'
+    | '/signup'
     | '/freelancers/$id'
     | '/jobs/$jobId'
   fileRoutesById: FileRoutesById
@@ -103,16 +127,32 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FreelancersRoute: typeof FreelancersRouteWithChildren
   JobsRoute: typeof JobsRouteWithChildren
+  LoginRoute: typeof LoginRoute
   PostJobRoute: typeof PostJobRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/post-job': {
       id: '/post-job'
       path: '/post-job'
       fullPath: '/post-job'
       preLoaderRoute: typeof PostJobRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jobs': {
@@ -179,7 +219,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FreelancersRoute: FreelancersRouteWithChildren,
   JobsRoute: JobsRouteWithChildren,
+  LoginRoute: LoginRoute,
   PostJobRoute: PostJobRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
