@@ -23,7 +23,10 @@ function HomePage() {
 
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate({ to: "/jobs", search: { q } as never });
+    if (typeof window !== "undefined" && q.trim()) {
+      sessionStorage.setItem("workly:search", q.trim());
+    }
+    navigate({ to: "/jobs" });
   };
 
   const topFreelancers = FREELANCERS.filter((f) => f.topRated).slice(0, 4);
