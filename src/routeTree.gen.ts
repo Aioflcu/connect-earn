@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PostJobRouteImport } from './routes/post-job'
 import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
 
+const PostJobRoute = PostJobRouteImport.update({
+  id: '/post-job',
+  path: '/post-job',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JobsRoute = JobsRouteImport.update({
   id: '/jobs',
   path: '/jobs',
@@ -32,34 +38,45 @@ const JobsJobIdRoute = JobsJobIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/jobs': typeof JobsRouteWithChildren
+  '/post-job': typeof PostJobRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/jobs': typeof JobsRouteWithChildren
+  '/post-job': typeof PostJobRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/jobs': typeof JobsRouteWithChildren
+  '/post-job': typeof PostJobRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/jobs' | '/jobs/$jobId'
+  fullPaths: '/' | '/jobs' | '/post-job' | '/jobs/$jobId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/jobs' | '/jobs/$jobId'
-  id: '__root__' | '/' | '/jobs' | '/jobs/$jobId'
+  to: '/' | '/jobs' | '/post-job' | '/jobs/$jobId'
+  id: '__root__' | '/' | '/jobs' | '/post-job' | '/jobs/$jobId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   JobsRoute: typeof JobsRouteWithChildren
+  PostJobRoute: typeof PostJobRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/post-job': {
+      id: '/post-job'
+      path: '/post-job'
+      fullPath: '/post-job'
+      preLoaderRoute: typeof PostJobRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/jobs': {
       id: '/jobs'
       path: '/jobs'
@@ -97,6 +114,7 @@ const JobsRouteWithChildren = JobsRoute._addFileChildren(JobsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   JobsRoute: JobsRouteWithChildren,
+  PostJobRoute: PostJobRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
