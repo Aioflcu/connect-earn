@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PostJobRouteImport } from './routes/post-job'
 import { Route as JobsRouteImport } from './routes/jobs'
+import { Route as FreelancersRouteImport } from './routes/freelancers'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
+import { Route as FreelancersIdRouteImport } from './routes/freelancers.$id'
 
 const PostJobRoute = PostJobRouteImport.update({
   id: '/post-job',
@@ -22,6 +24,11 @@ const PostJobRoute = PostJobRouteImport.update({
 const JobsRoute = JobsRouteImport.update({
   id: '/jobs',
   path: '/jobs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreelancersRoute = FreelancersRouteImport.update({
+  id: '/freelancers',
+  path: '/freelancers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -34,36 +41,67 @@ const JobsJobIdRoute = JobsJobIdRouteImport.update({
   path: '/$jobId',
   getParentRoute: () => JobsRoute,
 } as any)
+const FreelancersIdRoute = FreelancersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => FreelancersRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/post-job': typeof PostJobRoute
+  '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/post-job': typeof PostJobRoute
+  '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/post-job': typeof PostJobRoute
+  '/freelancers/$id': typeof FreelancersIdRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/jobs' | '/post-job' | '/jobs/$jobId'
+  fullPaths:
+    | '/'
+    | '/freelancers'
+    | '/jobs'
+    | '/post-job'
+    | '/freelancers/$id'
+    | '/jobs/$jobId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/jobs' | '/post-job' | '/jobs/$jobId'
-  id: '__root__' | '/' | '/jobs' | '/post-job' | '/jobs/$jobId'
+  to:
+    | '/'
+    | '/freelancers'
+    | '/jobs'
+    | '/post-job'
+    | '/freelancers/$id'
+    | '/jobs/$jobId'
+  id:
+    | '__root__'
+    | '/'
+    | '/freelancers'
+    | '/jobs'
+    | '/post-job'
+    | '/freelancers/$id'
+    | '/jobs/$jobId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FreelancersRoute: typeof FreelancersRouteWithChildren
   JobsRoute: typeof JobsRouteWithChildren
   PostJobRoute: typeof PostJobRoute
 }
@@ -84,6 +122,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JobsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/freelancers': {
+      id: '/freelancers'
+      path: '/freelancers'
+      fullPath: '/freelancers'
+      preLoaderRoute: typeof FreelancersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -98,8 +143,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JobsJobIdRouteImport
       parentRoute: typeof JobsRoute
     }
+    '/freelancers/$id': {
+      id: '/freelancers/$id'
+      path: '/$id'
+      fullPath: '/freelancers/$id'
+      preLoaderRoute: typeof FreelancersIdRouteImport
+      parentRoute: typeof FreelancersRoute
+    }
   }
 }
+
+interface FreelancersRouteChildren {
+  FreelancersIdRoute: typeof FreelancersIdRoute
+}
+
+const FreelancersRouteChildren: FreelancersRouteChildren = {
+  FreelancersIdRoute: FreelancersIdRoute,
+}
+
+const FreelancersRouteWithChildren = FreelancersRoute._addFileChildren(
+  FreelancersRouteChildren,
+)
 
 interface JobsRouteChildren {
   JobsJobIdRoute: typeof JobsJobIdRoute
@@ -113,6 +177,7 @@ const JobsRouteWithChildren = JobsRoute._addFileChildren(JobsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FreelancersRoute: FreelancersRouteWithChildren,
   JobsRoute: JobsRouteWithChildren,
   PostJobRoute: PostJobRoute,
 }
