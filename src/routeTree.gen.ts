@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as ProposalsRouteImport } from './routes/proposals'
 import { Route as PostJobRouteImport } from './routes/post-job'
+import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as FreelancersRouteImport } from './routes/freelancers'
@@ -25,9 +27,19 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProposalsRoute = ProposalsRouteImport.update({
+  id: '/proposals',
+  path: '/proposals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PostJobRoute = PostJobRouteImport.update({
   id: '/post-job',
   path: '/post-job',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesRoute = MessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -76,7 +88,9 @@ export interface FileRoutesByFullPath {
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
+  '/messages': typeof MessagesRoute
   '/post-job': typeof PostJobRoute
+  '/proposals': typeof ProposalsRoute
   '/signup': typeof SignupRoute
   '/dashboard/client': typeof DashboardClientRoute
   '/dashboard/freelancer': typeof DashboardFreelancerRoute
@@ -88,7 +102,9 @@ export interface FileRoutesByTo {
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
+  '/messages': typeof MessagesRoute
   '/post-job': typeof PostJobRoute
+  '/proposals': typeof ProposalsRoute
   '/signup': typeof SignupRoute
   '/dashboard/client': typeof DashboardClientRoute
   '/dashboard/freelancer': typeof DashboardFreelancerRoute
@@ -101,7 +117,9 @@ export interface FileRoutesById {
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
+  '/messages': typeof MessagesRoute
   '/post-job': typeof PostJobRoute
+  '/proposals': typeof ProposalsRoute
   '/signup': typeof SignupRoute
   '/dashboard/client': typeof DashboardClientRoute
   '/dashboard/freelancer': typeof DashboardFreelancerRoute
@@ -115,7 +133,9 @@ export interface FileRouteTypes {
     | '/freelancers'
     | '/jobs'
     | '/login'
+    | '/messages'
     | '/post-job'
+    | '/proposals'
     | '/signup'
     | '/dashboard/client'
     | '/dashboard/freelancer'
@@ -127,7 +147,9 @@ export interface FileRouteTypes {
     | '/freelancers'
     | '/jobs'
     | '/login'
+    | '/messages'
     | '/post-job'
+    | '/proposals'
     | '/signup'
     | '/dashboard/client'
     | '/dashboard/freelancer'
@@ -139,7 +161,9 @@ export interface FileRouteTypes {
     | '/freelancers'
     | '/jobs'
     | '/login'
+    | '/messages'
     | '/post-job'
+    | '/proposals'
     | '/signup'
     | '/dashboard/client'
     | '/dashboard/freelancer'
@@ -152,7 +176,9 @@ export interface RootRouteChildren {
   FreelancersRoute: typeof FreelancersRouteWithChildren
   JobsRoute: typeof JobsRouteWithChildren
   LoginRoute: typeof LoginRoute
+  MessagesRoute: typeof MessagesRoute
   PostJobRoute: typeof PostJobRoute
+  ProposalsRoute: typeof ProposalsRoute
   SignupRoute: typeof SignupRoute
   DashboardClientRoute: typeof DashboardClientRoute
   DashboardFreelancerRoute: typeof DashboardFreelancerRoute
@@ -167,11 +193,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/proposals': {
+      id: '/proposals'
+      path: '/proposals'
+      fullPath: '/proposals'
+      preLoaderRoute: typeof ProposalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/post-job': {
       id: '/post-job'
       path: '/post-job'
       fullPath: '/post-job'
       preLoaderRoute: typeof PostJobRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages': {
+      id: '/messages'
+      path: '/messages'
+      fullPath: '/messages'
+      preLoaderRoute: typeof MessagesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -260,7 +300,9 @@ const rootRouteChildren: RootRouteChildren = {
   FreelancersRoute: FreelancersRouteWithChildren,
   JobsRoute: JobsRouteWithChildren,
   LoginRoute: LoginRoute,
+  MessagesRoute: MessagesRoute,
   PostJobRoute: PostJobRoute,
+  ProposalsRoute: ProposalsRoute,
   SignupRoute: SignupRoute,
   DashboardClientRoute: DashboardClientRoute,
   DashboardFreelancerRoute: DashboardFreelancerRoute,
