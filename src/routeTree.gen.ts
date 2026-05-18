@@ -9,38 +9,272 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ProposalsRouteImport } from './routes/proposals'
+import { Route as PostJobRouteImport } from './routes/post-job'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as MessagesRouteImport } from './routes/messages'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as JobsRouteImport } from './routes/jobs'
+import { Route as FreelancersRouteImport } from './routes/freelancers'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
+import { Route as FreelancersIdRouteImport } from './routes/freelancers.$id'
+import { Route as DashboardFreelancerRouteImport } from './routes/dashboard.freelancer'
+import { Route as DashboardClientRouteImport } from './routes/dashboard.client'
 
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProposalsRoute = ProposalsRouteImport.update({
+  id: '/proposals',
+  path: '/proposals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostJobRoute = PostJobRouteImport.update({
+  id: '/post-job',
+  path: '/post-job',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MessagesRoute = MessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsRoute = JobsRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreelancersRoute = FreelancersRouteImport.update({
+  id: '/freelancers',
+  path: '/freelancers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JobsJobIdRoute = JobsJobIdRouteImport.update({
+  id: '/$jobId',
+  path: '/$jobId',
+  getParentRoute: () => JobsRoute,
+} as any)
+const FreelancersIdRoute = FreelancersIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => FreelancersRoute,
+} as any)
+const DashboardFreelancerRoute = DashboardFreelancerRouteImport.update({
+  id: '/dashboard/freelancer',
+  path: '/dashboard/freelancer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardClientRoute = DashboardClientRouteImport.update({
+  id: '/dashboard/client',
+  path: '/dashboard/client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/freelancers': typeof FreelancersRouteWithChildren
+  '/jobs': typeof JobsRouteWithChildren
+  '/login': typeof LoginRoute
+  '/messages': typeof MessagesRoute
+  '/onboarding': typeof OnboardingRoute
+  '/post-job': typeof PostJobRoute
+  '/proposals': typeof ProposalsRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/dashboard/client': typeof DashboardClientRoute
+  '/dashboard/freelancer': typeof DashboardFreelancerRoute
+  '/freelancers/$id': typeof FreelancersIdRoute
+  '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/freelancers': typeof FreelancersRouteWithChildren
+  '/jobs': typeof JobsRouteWithChildren
+  '/login': typeof LoginRoute
+  '/messages': typeof MessagesRoute
+  '/onboarding': typeof OnboardingRoute
+  '/post-job': typeof PostJobRoute
+  '/proposals': typeof ProposalsRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/dashboard/client': typeof DashboardClientRoute
+  '/dashboard/freelancer': typeof DashboardFreelancerRoute
+  '/freelancers/$id': typeof FreelancersIdRoute
+  '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/freelancers': typeof FreelancersRouteWithChildren
+  '/jobs': typeof JobsRouteWithChildren
+  '/login': typeof LoginRoute
+  '/messages': typeof MessagesRoute
+  '/onboarding': typeof OnboardingRoute
+  '/post-job': typeof PostJobRoute
+  '/proposals': typeof ProposalsRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/dashboard/client': typeof DashboardClientRoute
+  '/dashboard/freelancer': typeof DashboardFreelancerRoute
+  '/freelancers/$id': typeof FreelancersIdRoute
+  '/jobs/$jobId': typeof JobsJobIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/freelancers'
+    | '/jobs'
+    | '/login'
+    | '/messages'
+    | '/onboarding'
+    | '/post-job'
+    | '/proposals'
+    | '/settings'
+    | '/signup'
+    | '/dashboard/client'
+    | '/dashboard/freelancer'
+    | '/freelancers/$id'
+    | '/jobs/$jobId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/freelancers'
+    | '/jobs'
+    | '/login'
+    | '/messages'
+    | '/onboarding'
+    | '/post-job'
+    | '/proposals'
+    | '/settings'
+    | '/signup'
+    | '/dashboard/client'
+    | '/dashboard/freelancer'
+    | '/freelancers/$id'
+    | '/jobs/$jobId'
+  id:
+    | '__root__'
+    | '/'
+    | '/freelancers'
+    | '/jobs'
+    | '/login'
+    | '/messages'
+    | '/onboarding'
+    | '/post-job'
+    | '/proposals'
+    | '/settings'
+    | '/signup'
+    | '/dashboard/client'
+    | '/dashboard/freelancer'
+    | '/freelancers/$id'
+    | '/jobs/$jobId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FreelancersRoute: typeof FreelancersRouteWithChildren
+  JobsRoute: typeof JobsRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  MessagesRoute: typeof MessagesRoute
+  OnboardingRoute: typeof OnboardingRoute
+  PostJobRoute: typeof PostJobRoute
+  ProposalsRoute: typeof ProposalsRoute
+  SettingsRoute: typeof SettingsRoute
+  SignupRoute: typeof SignupRoute
+  DashboardClientRoute: typeof DashboardClientRoute
+  DashboardFreelancerRoute: typeof DashboardFreelancerRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proposals': {
+      id: '/proposals'
+      path: '/proposals'
+      fullPath: '/proposals'
+      preLoaderRoute: typeof ProposalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/post-job': {
+      id: '/post-job'
+      path: '/post-job'
+      fullPath: '/post-job'
+      preLoaderRoute: typeof PostJobRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/messages': {
+      id: '/messages'
+      path: '/messages'
+      fullPath: '/messages'
+      preLoaderRoute: typeof MessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs': {
+      id: '/jobs'
+      path: '/jobs'
+      fullPath: '/jobs'
+      preLoaderRoute: typeof JobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/freelancers': {
+      id: '/freelancers'
+      path: '/freelancers'
+      fullPath: '/freelancers'
+      preLoaderRoute: typeof FreelancersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +282,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/jobs/$jobId': {
+      id: '/jobs/$jobId'
+      path: '/$jobId'
+      fullPath: '/jobs/$jobId'
+      preLoaderRoute: typeof JobsJobIdRouteImport
+      parentRoute: typeof JobsRoute
+    }
+    '/freelancers/$id': {
+      id: '/freelancers/$id'
+      path: '/$id'
+      fullPath: '/freelancers/$id'
+      preLoaderRoute: typeof FreelancersIdRouteImport
+      parentRoute: typeof FreelancersRoute
+    }
+    '/dashboard/freelancer': {
+      id: '/dashboard/freelancer'
+      path: '/dashboard/freelancer'
+      fullPath: '/dashboard/freelancer'
+      preLoaderRoute: typeof DashboardFreelancerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/client': {
+      id: '/dashboard/client'
+      path: '/dashboard/client'
+      fullPath: '/dashboard/client'
+      preLoaderRoute: typeof DashboardClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface FreelancersRouteChildren {
+  FreelancersIdRoute: typeof FreelancersIdRoute
+}
+
+const FreelancersRouteChildren: FreelancersRouteChildren = {
+  FreelancersIdRoute: FreelancersIdRoute,
+}
+
+const FreelancersRouteWithChildren = FreelancersRoute._addFileChildren(
+  FreelancersRouteChildren,
+)
+
+interface JobsRouteChildren {
+  JobsJobIdRoute: typeof JobsJobIdRoute
+}
+
+const JobsRouteChildren: JobsRouteChildren = {
+  JobsJobIdRoute: JobsJobIdRoute,
+}
+
+const JobsRouteWithChildren = JobsRoute._addFileChildren(JobsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FreelancersRoute: FreelancersRouteWithChildren,
+  JobsRoute: JobsRouteWithChildren,
+  LoginRoute: LoginRoute,
+  MessagesRoute: MessagesRoute,
+  OnboardingRoute: OnboardingRoute,
+  PostJobRoute: PostJobRoute,
+  ProposalsRoute: ProposalsRoute,
+  SettingsRoute: SettingsRoute,
+  SignupRoute: SignupRoute,
+  DashboardClientRoute: DashboardClientRoute,
+  DashboardFreelancerRoute: DashboardFreelancerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
