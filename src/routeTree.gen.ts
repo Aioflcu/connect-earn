@@ -10,8 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProposalsRouteImport } from './routes/proposals'
 import { Route as PostJobRouteImport } from './routes/post-job'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JobsRouteImport } from './routes/jobs'
@@ -27,6 +29,11 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProposalsRoute = ProposalsRouteImport.update({
   id: '/proposals',
   path: '/proposals',
@@ -35,6 +42,11 @@ const ProposalsRoute = ProposalsRouteImport.update({
 const PostJobRoute = PostJobRouteImport.update({
   id: '/post-job',
   path: '/post-job',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MessagesRoute = MessagesRouteImport.update({
@@ -89,8 +101,10 @@ export interface FileRoutesByFullPath {
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
+  '/onboarding': typeof OnboardingRoute
   '/post-job': typeof PostJobRoute
   '/proposals': typeof ProposalsRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/dashboard/client': typeof DashboardClientRoute
   '/dashboard/freelancer': typeof DashboardFreelancerRoute
@@ -103,8 +117,10 @@ export interface FileRoutesByTo {
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
+  '/onboarding': typeof OnboardingRoute
   '/post-job': typeof PostJobRoute
   '/proposals': typeof ProposalsRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/dashboard/client': typeof DashboardClientRoute
   '/dashboard/freelancer': typeof DashboardFreelancerRoute
@@ -118,8 +134,10 @@ export interface FileRoutesById {
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
+  '/onboarding': typeof OnboardingRoute
   '/post-job': typeof PostJobRoute
   '/proposals': typeof ProposalsRoute
+  '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/dashboard/client': typeof DashboardClientRoute
   '/dashboard/freelancer': typeof DashboardFreelancerRoute
@@ -134,8 +152,10 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/login'
     | '/messages'
+    | '/onboarding'
     | '/post-job'
     | '/proposals'
+    | '/settings'
     | '/signup'
     | '/dashboard/client'
     | '/dashboard/freelancer'
@@ -148,8 +168,10 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/login'
     | '/messages'
+    | '/onboarding'
     | '/post-job'
     | '/proposals'
+    | '/settings'
     | '/signup'
     | '/dashboard/client'
     | '/dashboard/freelancer'
@@ -162,8 +184,10 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/login'
     | '/messages'
+    | '/onboarding'
     | '/post-job'
     | '/proposals'
+    | '/settings'
     | '/signup'
     | '/dashboard/client'
     | '/dashboard/freelancer'
@@ -177,8 +201,10 @@ export interface RootRouteChildren {
   JobsRoute: typeof JobsRouteWithChildren
   LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRoute
+  OnboardingRoute: typeof OnboardingRoute
   PostJobRoute: typeof PostJobRoute
   ProposalsRoute: typeof ProposalsRoute
+  SettingsRoute: typeof SettingsRoute
   SignupRoute: typeof SignupRoute
   DashboardClientRoute: typeof DashboardClientRoute
   DashboardFreelancerRoute: typeof DashboardFreelancerRoute
@@ -193,6 +219,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/proposals': {
       id: '/proposals'
       path: '/proposals'
@@ -205,6 +238,13 @@ declare module '@tanstack/react-router' {
       path: '/post-job'
       fullPath: '/post-job'
       preLoaderRoute: typeof PostJobRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/messages': {
@@ -301,8 +341,10 @@ const rootRouteChildren: RootRouteChildren = {
   JobsRoute: JobsRouteWithChildren,
   LoginRoute: LoginRoute,
   MessagesRoute: MessagesRoute,
+  OnboardingRoute: OnboardingRoute,
   PostJobRoute: PostJobRoute,
   ProposalsRoute: ProposalsRoute,
+  SettingsRoute: SettingsRoute,
   SignupRoute: SignupRoute,
   DashboardClientRoute: DashboardClientRoute,
   DashboardFreelancerRoute: DashboardFreelancerRoute,
