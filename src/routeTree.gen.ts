@@ -12,12 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProposalsRouteImport } from './routes/proposals'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PostJobRouteImport } from './routes/post-job'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MessagesRouteImport } from './routes/messages'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as FreelancersRouteImport } from './routes/freelancers'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
@@ -38,6 +40,11 @@ const SettingsRoute = SettingsRouteImport.update({
 const ProposalsRoute = ProposalsRouteImport.update({
   id: '/proposals',
   path: '/proposals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostJobRoute = PostJobRouteImport.update({
@@ -68,6 +75,11 @@ const JobsRoute = JobsRouteImport.update({
 const FreelancersRoute = FreelancersRouteImport.update({
   id: '/freelancers',
   path: '/freelancers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -104,12 +116,14 @@ const DashboardClientRoute = DashboardClientRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/onboarding': typeof OnboardingRoute
   '/post-job': typeof PostJobRoute
+  '/pricing': typeof PricingRoute
   '/proposals': typeof ProposalsRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
@@ -121,12 +135,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/onboarding': typeof OnboardingRoute
   '/post-job': typeof PostJobRoute
+  '/pricing': typeof PricingRoute
   '/proposals': typeof ProposalsRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
@@ -139,12 +155,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/freelancers': typeof FreelancersRouteWithChildren
   '/jobs': typeof JobsRouteWithChildren
   '/login': typeof LoginRoute
   '/messages': typeof MessagesRoute
   '/onboarding': typeof OnboardingRoute
   '/post-job': typeof PostJobRoute
+  '/pricing': typeof PricingRoute
   '/proposals': typeof ProposalsRoute
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
@@ -158,12 +176,14 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/faq'
     | '/freelancers'
     | '/jobs'
     | '/login'
     | '/messages'
     | '/onboarding'
     | '/post-job'
+    | '/pricing'
     | '/proposals'
     | '/settings'
     | '/signup'
@@ -175,12 +195,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/faq'
     | '/freelancers'
     | '/jobs'
     | '/login'
     | '/messages'
     | '/onboarding'
     | '/post-job'
+    | '/pricing'
     | '/proposals'
     | '/settings'
     | '/signup'
@@ -192,12 +214,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/faq'
     | '/freelancers'
     | '/jobs'
     | '/login'
     | '/messages'
     | '/onboarding'
     | '/post-job'
+    | '/pricing'
     | '/proposals'
     | '/settings'
     | '/signup'
@@ -210,12 +234,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  FaqRoute: typeof FaqRoute
   FreelancersRoute: typeof FreelancersRouteWithChildren
   JobsRoute: typeof JobsRouteWithChildren
   LoginRoute: typeof LoginRoute
   MessagesRoute: typeof MessagesRoute
   OnboardingRoute: typeof OnboardingRoute
   PostJobRoute: typeof PostJobRoute
+  PricingRoute: typeof PricingRoute
   ProposalsRoute: typeof ProposalsRoute
   SettingsRoute: typeof SettingsRoute
   SignupRoute: typeof SignupRoute
@@ -244,6 +270,13 @@ declare module '@tanstack/react-router' {
       path: '/proposals'
       fullPath: '/proposals'
       preLoaderRoute: typeof ProposalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/post-job': {
@@ -286,6 +319,13 @@ declare module '@tanstack/react-router' {
       path: '/freelancers'
       fullPath: '/freelancers'
       preLoaderRoute: typeof FreelancersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -358,12 +398,14 @@ const JobsRouteWithChildren = JobsRoute._addFileChildren(JobsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  FaqRoute: FaqRoute,
   FreelancersRoute: FreelancersRouteWithChildren,
   JobsRoute: JobsRouteWithChildren,
   LoginRoute: LoginRoute,
   MessagesRoute: MessagesRoute,
   OnboardingRoute: OnboardingRoute,
   PostJobRoute: PostJobRoute,
+  PricingRoute: PricingRoute,
   ProposalsRoute: ProposalsRoute,
   SettingsRoute: SettingsRoute,
   SignupRoute: SignupRoute,
