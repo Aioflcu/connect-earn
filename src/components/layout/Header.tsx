@@ -1,11 +1,13 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Briefcase, Menu, X, Search, Bell, MessageSquare, LogOut, Settings, LayoutDashboard, User as UserIcon, PlusCircle } from "lucide-react";
+import { Briefcase, Menu, X, MessageSquare, LogOut, Settings, LayoutDashboard, User as UserIcon, Command } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { NotificationsBell } from "@/components/common/NotificationsBell";
 
 const navItems = [
   { to: "/jobs", label: "Find Work" },
@@ -50,14 +52,24 @@ export function Header() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
+          <button
+            onClick={() => {
+              const ev = new KeyboardEvent("keydown", { key: "k", metaKey: true });
+              window.dispatchEvent(ev);
+            }}
+            className="hidden items-center gap-2 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:text-primary lg:flex"
+            aria-label="Open command palette"
+          >
+            <Command className="h-3.5 w-3.5" /> Search
+            <kbd className="ml-1 rounded bg-secondary px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">⌘K</kbd>
+          </button>
+          <ThemeToggle />
           {user ? (
             <>
               <Button variant="ghost" size="icon" onClick={() => navigate({ to: "/messages" })}>
                 <MessageSquare className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon">
-                <Bell className="h-5 w-5" />
-              </Button>
+              <NotificationsBell />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center gap-2 rounded-full border border-border bg-card px-1 py-1 pr-3 transition-shadow hover:shadow-sm">
