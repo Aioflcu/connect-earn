@@ -24,8 +24,8 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
 import { Route as FreelancersIdRouteImport } from './routes/freelancers.$id'
-import { Route as DashboardFreelancerRouteImport } from './routes/dashboard.freelancer'
-import { Route as DashboardClientRouteImport } from './routes/dashboard.client'
+import { Route as DashboardFreelancerRouteImport } from './routes/dashboard/freelancer'
+import { Route as DashboardClientRouteImport } from './routes/dashboard/client'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -415,3 +415,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
