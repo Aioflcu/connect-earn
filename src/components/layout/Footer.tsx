@@ -27,7 +27,7 @@ export function Footer() {
           {[
             { title: "For clients", links: [["Post a job","/post-job"],["Browse talent","/freelancers"],["How it works","/"]]},
             { title: "For talent", links: [["Find work","/jobs"],["My proposals","/proposals"],["Onboarding","/onboarding"]]},
-            { title: "Company", links: [["About","/"],["Careers","/"],["Contact","/"]]},
+            { title: "Company", links: [["About","/about"],["Pricing","/pricing"],["FAQ","/faq"]]},
           ].map((col) => (
             <div key={col.title}>
               <h4 className="text-sm font-semibold text-primary">{col.title}</h4>
