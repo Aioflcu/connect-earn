@@ -1,5 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Bookmark, BookmarkCheck, Briefcase, CheckCircle2, Clock, MapPin, Shield, Star, Users } from "lucide-react";
 import { JOBS } from "@/lib/mock-data";
 import { storage } from "@/lib/storage";
@@ -15,10 +14,10 @@ import { useAuth } from "@/lib/auth";
 import { CardSkeleton } from "@/components/common/LoadingSkeleton";
 import type { Job } from "@/lib/types";
 
-export const Route = createFileRoute("/jobs/$jobId")({ component: JobDetailPage });
+({ component: JobDetailPage });
 
 function JobDetailPage() {
-  const { jobId } = Route.useParams();
+  const { jobId } = useParams() as Record<string, string>;
   const navigate = useNavigate();
   const { user } = useAuth();
   const [job, setJob] = useState<Job | null>(null);
@@ -104,7 +103,7 @@ function JobDetailPage() {
 
         <aside className="space-y-5">
           <div className="rounded-2xl border border-border bg-card p-6">
-            <ApplyButton job={job} user={user} onLoginNeeded={() => navigate({ to: "/login" })} />
+            <ApplyButton job={job} user={user} onLoginNeeded={() => navigate("/login")} />
             <Button variant="outline" className="mt-3 w-full" onClick={onSave}>
               {saved ? "Saved" : "Save job"}
             </Button>

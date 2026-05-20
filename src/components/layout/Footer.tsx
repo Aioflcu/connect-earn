@@ -1,5 +1,4 @@
-import { Link } from "@tanstack/react-router";
-import { Briefcase, Twitter, Github, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";import { Briefcase, Twitter, Github, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (

@@ -1,9 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHeader } from "@/components/common/PageHeader";
+import { Link } from "react-router-dom";import { PageHeader } from "@/components/common/PageHeader";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/faq")({
+({
   component: FaqPage,
   head: () => ({ meta: [
     { title: "FAQ — Workly" },

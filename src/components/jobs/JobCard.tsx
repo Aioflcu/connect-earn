@@ -1,5 +1,4 @@
-import { Link } from "@tanstack/react-router";
-import { Bookmark, BookmarkCheck, Clock, MapPin, Users } from "lucide-react";
+import { Link } from "react-router-dom";import { Bookmark, BookmarkCheck, Clock, MapPin, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Job } from "@/lib/types";
 import { useEffect, useState } from "react";
@@ -19,7 +18,7 @@ export function JobCard({ job }: { job: Job }) {
   };
 
   return (
-    <Link to="/jobs/$jobId" params={{ jobId: job.id }} className="group block rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg">
+    <Link to={`/jobs/${job.id}`} className="group block rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">

@@ -1,5 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";import { useEffect, useState } from "react";
 import { Briefcase, DollarSign, Users, TrendingUp, Check, X } from "lucide-react";
 import { storage } from "@/lib/storage";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -11,7 +10,7 @@ import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import type { Job, Proposal } from "@/lib/types";
 
-export const Route = createFileRoute("/dashboard/client")({ component: ClientDashboard });
+({ component: ClientDashboard });
 
 function ClientDashboard() {
   const { user } = useAuth();
@@ -20,7 +19,7 @@ function ClientDashboard() {
   const [proposals, setProposals] = useState<Proposal[]>([]);
 
   useEffect(() => {
-    if (!user) { navigate({ to: "/login" }); return; }
+    if (!user) { navigate("/login"); return; }
     setJobs(storage.getPostedJobs());
     setProposals(storage.getProposals());
   }, [user, navigate]);
@@ -64,7 +63,7 @@ function ClientDashboard() {
             ) : (
               <div className="space-y-3">
                 {jobs.map((j) => (
-                  <Link key={j.id} to="/jobs/$jobId" params={{ jobId: j.id }} className="flex items-center justify-between rounded-2xl border border-border bg-card p-5 transition-colors hover:border-brand/40">
+                  <Link key={j.id} to={`/jobs/${j.id}`} className="flex items-center justify-between rounded-2xl border border-border bg-card p-5 transition-colors hover:border-brand/40">
                     <div>
                       <h3 className="font-semibold text-primary">{j.title}</h3>
                       <p className="text-xs text-muted-foreground">Posted {j.postedAt} · {j.proposalsCount} proposals</p>

@@ -1,5 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,7 +10,7 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/settings")({ component: SettingsPage });
+({ component: SettingsPage });
 
 function SettingsPage() {
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ function SettingsPage() {
   const [notifs, setNotifs] = useState({ email: true, proposals: true, messages: true, marketing: false });
 
   useEffect(() => {
-    if (!user) { navigate({ to: "/login" }); return; }
+    if (!user) { navigate("/login"); return; }
     setForm({
       name: user.name, title: user.title ?? "", location: user.location ?? "",
       bio: user.bio ?? "", hourlyRate: user.hourlyRate ?? 0, skills: user.skills ?? [], skillInput: "",

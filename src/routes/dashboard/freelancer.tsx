@@ -1,5 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";import { useEffect, useState } from "react";
 import { Briefcase, DollarSign, Star, TrendingUp } from "lucide-react";
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { storage } from "@/lib/storage";
@@ -13,7 +12,7 @@ import { JOBS } from "@/lib/mock-data";
 import { JobCard } from "@/components/jobs/JobCard";
 import type { Proposal } from "@/lib/types";
 
-export const Route = createFileRoute("/dashboard/freelancer")({ component: FreelancerDashboard });
+({ component: FreelancerDashboard });
 
 const EARNINGS = [
   { m: "Jan", v: 1200 },{ m: "Feb", v: 1800 },{ m: "Mar", v: 2400 },
@@ -27,7 +26,7 @@ function FreelancerDashboard() {
   const [proposals, setProposals] = useState<Proposal[]>([]);
 
   useEffect(() => {
-    if (!user) { navigate({ to: "/login" }); return; }
+    if (!user) { navigate("/login"); return; }
     setProposals(storage.getProposals().filter((p) => p.freelancerId === user.id));
   }, [user, navigate]);
 

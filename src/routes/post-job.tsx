@@ -1,5 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, CheckCircle2 } from "lucide-react";
 import { CATEGORIES, ALL_SKILLS } from "@/lib/mock-data";
 import { storage } from "@/lib/storage";
@@ -13,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 import { useAuth } from "@/lib/auth";
 
-export const Route = createFileRoute("/post-job")({ component: PostJobPage });
+({ component: PostJobPage });
 
 const STEPS = ["Basics","Category & skills","Budget","Review"] as const;
 
@@ -108,8 +107,8 @@ function PostJobPage() {
         <h1 className="mt-6 font-display text-3xl font-bold text-primary">Your job is live!</h1>
         <p className="mt-2 text-muted-foreground">We'll start surfacing it to qualified freelancers right away.</p>
         <div className="mt-8 flex justify-center gap-3">
-          <Button variant="outline" onClick={() => navigate({ to: "/jobs" })}>Browse jobs</Button>
-          <Button className="bg-brand text-brand-foreground hover:bg-brand/90" onClick={() => navigate({ to: "/dashboard/client" })}>Go to dashboard</Button>
+          <Button variant="outline" onClick={() => navigate("/jobs")}>Browse jobs</Button>
+          <Button className="bg-brand text-brand-foreground hover:bg-brand/90" onClick={() => navigate("/dashboard/client")}>Go to dashboard</Button>
         </div>
       </div>
     );

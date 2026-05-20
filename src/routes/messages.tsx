@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -10,7 +9,7 @@ import { FREELANCERS } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 import type { Conversation } from "@/lib/types";
 
-export const Route = createFileRoute("/messages")({ component: MessagesPage });
+({ component: MessagesPage });
 
 function seed(): Conversation[] {
   return FREELANCERS.slice(0, 5).map((f, i) => ({

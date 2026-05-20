@@ -1,5 +1,4 @@
-import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Briefcase, Menu, X, MessageSquare, LogOut, Settings, LayoutDashboard, User as UserIcon, Command } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";import { Briefcase, Menu, X, MessageSquare, LogOut, Settings, LayoutDashboard, User as UserIcon, Command } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,7 @@ const navItems = [
 export function Header() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useLocation().pathname;
   const [open, setOpen] = useState(false);
 
   const isActive = (path: string) => pathname === path || pathname.startsWith(path + "/");
@@ -66,7 +65,7 @@ export function Header() {
           <ThemeToggle />
           {user ? (
             <>
-              <Button variant="ghost" size="icon" onClick={() => navigate({ to: "/messages" })}>
+              <Button variant="ghost" size="icon" onClick={() => navigate("/messages")}>
                 <MessageSquare className="h-5 w-5" />
               </Button>
               <NotificationsBell />
@@ -90,18 +89,18 @@ export function Header() {
                     <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
                   </DropdownMenuItem>
                   {user.role === "freelancer" && (
-                    <DropdownMenuItem onClick={() => navigate({ to: "/proposals" })}>
+                    <DropdownMenuItem onClick={() => navigate("/proposals")}>
                       <Briefcase className="mr-2 h-4 w-4" /> My Proposals
                     </DropdownMenuItem>
                   )}
-                  <DropdownMenuItem onClick={() => navigate({ to: "/settings" })}>
+                  <DropdownMenuItem onClick={() => navigate("/settings")}>
                     <UserIcon className="mr-2 h-4 w-4" /> Profile
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => navigate({ to: "/settings" })}>
+                  <DropdownMenuItem onClick={() => navigate("/settings")}>
                     <Settings className="mr-2 h-4 w-4" /> Settings
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => { logout(); navigate({ to: "/" }); }}>
+                  <DropdownMenuItem onClick={() => { logout(); navigate("/"); }}>
                     <LogOut className="mr-2 h-4 w-4" /> Log out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -109,8 +108,8 @@ export function Header() {
             </>
           ) : (
             <>
-              <Button variant="ghost" onClick={() => navigate({ to: "/login" })}>Log in</Button>
-              <Button className="bg-brand text-brand-foreground hover:bg-brand/90" onClick={() => navigate({ to: "/signup" })}>
+              <Button variant="ghost" onClick={() => navigate("/login")}>Log in</Button>
+              <Button className="bg-brand text-brand-foreground hover:bg-brand/90" onClick={() => navigate("/signup")}>
                 Get started
               </Button>
             </>
@@ -140,11 +139,11 @@ export function Header() {
             ))}
             <div className="mt-2 flex gap-2 border-t border-border pt-3">
               {user ? (
-                <Button className="w-full" variant="outline" onClick={() => { logout(); setOpen(false); navigate({ to: "/" }); }}>Log out</Button>
+                <Button className="w-full" variant="outline" onClick={() => { logout(); setOpen(false); navigate("/"); }}>Log out</Button>
               ) : (
                 <>
-                  <Button variant="outline" className="w-full" onClick={() => { setOpen(false); navigate({ to: "/login" }); }}>Log in</Button>
-                  <Button className="w-full bg-brand text-brand-foreground hover:bg-brand/90" onClick={() => { setOpen(false); navigate({ to: "/signup" }); }}>Get started</Button>
+                  <Button variant="outline" className="w-full" onClick={() => { setOpen(false); navigate("/login"); }}>Log in</Button>
+                  <Button className="w-full bg-brand text-brand-foreground hover:bg-brand/90" onClick={() => { setOpen(false); navigate("/signup"); }}>Get started</Button>
                 </>
               )}
             </div>

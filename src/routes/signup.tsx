@@ -1,5 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";import { useState } from "react";
 import { Briefcase, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,7 +7,7 @@ import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import type { Role } from "@/lib/types";
 
-export const Route = createFileRoute("/signup")({ component: SignupPage });
+({ component: SignupPage });
 
 function SignupPage() {
   const navigate = useNavigate();

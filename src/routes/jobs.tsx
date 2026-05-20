@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { JOBS, CATEGORIES } from "@/lib/mock-data";
@@ -14,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-export const Route = createFileRoute("/jobs")({
+({
   component: JobsPage,
   head: () => ({ meta: [
     { title: "Browse jobs — Workly" },

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
+import { useNavigate } from "react-router-dom";import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
 import { Briefcase, Users, PlusCircle, LayoutDashboard, MessageSquare, Settings, Home, Sun, Moon, HelpCircle, DollarSign, Info } from "lucide-react";
 import { useTheme } from "@/lib/theme";
 

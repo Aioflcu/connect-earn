@@ -1,5 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link } from "react-router-dom";import { useState } from "react";
 import { Check } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Button } from "@/components/ui/button";
@@ -7,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/pricing")({
+({
   component: PricingPage,
   head: () => ({ meta: [
     { title: "Pricing — Workly" },

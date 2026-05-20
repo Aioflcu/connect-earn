@@ -1,5 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";import { useEffect, useState } from "react";
 import { Award, ArrowLeft, MapPin, MessageSquare, Star, CheckCircle2, Briefcase } from "lucide-react";
 import { FREELANCERS } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
@@ -10,10 +9,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 import type { Freelancer } from "@/lib/types";
 
-export const Route = createFileRoute("/freelancers/$id")({ component: FreelancerProfilePage });
+({ component: FreelancerProfilePage });
 
 function FreelancerProfilePage() {
-  const { id } = Route.useParams();
+  const { id } = useParams() as Record<string, string>;
   const navigate = useNavigate();
   const [f, setF] = useState<Freelancer | null>(null);
   const [loading, setLoading] = useState(true);
@@ -57,7 +56,7 @@ function FreelancerProfilePage() {
               </div>
             </div>
             <div className="flex gap-2">
-              <Button variant="outline" onClick={() => { toast.success("Conversation started"); navigate({ to: "/messages" }); }}>
+              <Button variant="outline" onClick={() => { toast.success("Conversation started"); navigate("/messages"); }}>
                 <MessageSquare className="h-4 w-4" /> Message
               </Button>
               <Button className="bg-brand text-brand-foreground hover:bg-brand/90" onClick={() => toast.success(`Hired ${f.name}!`, { description: "Contract draft sent." })}>

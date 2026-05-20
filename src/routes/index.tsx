@@ -1,5 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Search, Code2, Palette, PenLine, Megaphone, BrainCircuit, Film, ArrowRight, CheckCircle2, Star, Sparkles, Briefcase, Users, Shield } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";import { Search, Code2, Palette, PenLine, Megaphone, BrainCircuit, Film, ArrowRight, CheckCircle2, Star, Sparkles, Briefcase, Users, Shield } from "lucide-react";
 import { useState } from "react";
 import { CATEGORIES, FREELANCERS, STATS, TESTIMONIALS } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 
 const ICONS = { Code2, Palette, PenLine, Megaphone, BrainCircuit, Film };
 
-export const Route = createFileRoute("/")({
+({
   component: HomePage,
   head: () => ({ meta: [
     { title: "Workly — Hire the world's best independent talent" },
@@ -26,7 +25,7 @@ function HomePage() {
     if (typeof window !== "undefined" && q.trim()) {
       sessionStorage.setItem("workly:search", q.trim());
     }
-    navigate({ to: "/jobs" });
+    navigate("/jobs");
   };
 
   const topFreelancers = FREELANCERS.filter((f) => f.topRated).slice(0, 4);
@@ -142,7 +141,7 @@ function HomePage() {
         </div>
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {topFreelancers.map((f) => (
-            <Link key={f.id} to="/freelancers/$id" params={{ id: f.id }} className="group rounded-2xl border border-border bg-card p-5 text-center transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg">
+            <Link key={f.id} to={`/freelancers/${f.id}`} className="group rounded-2xl border border-border bg-card p-5 text-center transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg">
               <Avatar className="mx-auto h-20 w-20"><AvatarImage src={f.avatar} /><AvatarFallback>{f.name[0]}</AvatarFallback></Avatar>
               <h3 className="mt-3 font-semibold text-primary group-hover:text-brand">{f.name}</h3>
               <p className="mt-0.5 line-clamp-1 text-sm text-muted-foreground">{f.title}</p>

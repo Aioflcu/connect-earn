@@ -1,10 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHeader } from "@/components/common/PageHeader";
+import { Link } from "react-router-dom";import { PageHeader } from "@/components/common/PageHeader";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Globe2, Sparkles, ShieldCheck, HeartHandshake } from "lucide-react";
 
-export const Route = createFileRoute("/about")({
+({
   component: AboutPage,
   head: () => ({ meta: [
     { title: "About — Workly" },
