@@ -56,7 +56,7 @@ function SignupPage() {
     setSubmitting(false);
     if (!r.ok) { toast.error(r.error ?? "Signup failed"); return; }
     toast.success(`Welcome to Workly, ${form.name.split(" ")[0]}!`);
-    navigate({ to: role === "freelancer" ? "/onboarding" : "/dashboard/client" });
+    navigate(role === "freelancer" ? "/onboarding" : "/dashboard/client");
   };
 
   return (

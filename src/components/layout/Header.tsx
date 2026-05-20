@@ -85,7 +85,7 @@ export function Header() {
                     <div className="text-xs font-normal text-muted-foreground capitalize">{user.role}</div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => navigate({ to: user.role === "client" ? "/dashboard/client" : "/dashboard/freelancer" })}>
+                  <DropdownMenuItem onClick={() => navigate(user.role === "client" ? "/dashboard/client" : "/dashboard/freelancer")}>
                     <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
                   </DropdownMenuItem>
                   {user.role === "freelancer" && (

@@ -29,7 +29,7 @@ function LoginPage() {
     setSubmitting(false);
     if (!r.ok) { toast.error(r.error ?? "Login failed"); return; }
     toast.success(`Welcome back, ${r.user!.name.split(" ")[0]}!`);
-    navigate({ to: r.user!.role === "client" ? "/dashboard/client" : "/dashboard/freelancer" });
+    navigate(r.user!.role === "client" ? "/dashboard/client" : "/dashboard/freelancer");
   };
 
   return (

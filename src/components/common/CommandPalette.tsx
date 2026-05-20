@@ -19,7 +19,7 @@ export function CommandPalette() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const go = (to: string) => { setOpen(false); navigate({ to }); };
+  const go = (to: string) => { setOpen(false); navigate(to); };
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
