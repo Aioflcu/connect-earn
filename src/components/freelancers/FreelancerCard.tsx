@@ -1,12 +1,11 @@
-import { Link } from "@tanstack/react-router";
-import { Award, MapPin, Star } from "lucide-react";
+import { Link } from "react-router-dom";import { Award, MapPin, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { Freelancer } from "@/lib/types";
 
 export function FreelancerCard({ freelancer: f }: { freelancer: Freelancer }) {
   return (
-    <Link to="/freelancers/$id" params={{ id: f.id }} className="group flex flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg">
+    <Link to={`/freelancers/${f.id}`} className="group flex flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg">
       <div className="flex items-start gap-4">
         <Avatar className="h-14 w-14 ring-2 ring-background ring-offset-2 ring-offset-background">
           <AvatarImage src={f.avatar} alt={f.name} />

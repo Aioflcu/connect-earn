@@ -1,13 +1,10 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";import { useState } from "react";
 import { Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
-
-export const Route = createFileRoute("/login")({ component: LoginPage });
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -30,7 +27,7 @@ function LoginPage() {
     setSubmitting(false);
     if (!r.ok) { toast.error(r.error ?? "Login failed"); return; }
     toast.success(`Welcome back, ${r.user!.name.split(" ")[0]}!`);
-    navigate({ to: r.user!.role === "client" ? "/dashboard/client" : "/dashboard/freelancer" });
+    navigate(r.user!.role === "client" ? "/dashboard/client" : "/dashboard/freelancer");
   };
 
   return (
@@ -63,3 +60,5 @@ function LoginPage() {
     </div>
   );
 }
+
+export default LoginPage;

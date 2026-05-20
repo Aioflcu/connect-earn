@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { FREELANCERS, CATEGORIES } from "@/lib/mock-data";
@@ -12,13 +11,6 @@ import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-export const Route = createFileRoute("/freelancers")({
-  component: FreelancersPage,
-  head: () => ({ meta: [
-    { title: "Browse talent — Workly" },
-    { name: "description", content: "Discover 20+ vetted freelancers across web development, design, writing, marketing, data science, and video." },
-  ]}),
-});
 
 function FreelancersPage() {
   const [loading, setLoading] = useState(true);
@@ -97,3 +89,5 @@ function FreelancersPage() {
     </>
   );
 }
+
+export default FreelancersPage;

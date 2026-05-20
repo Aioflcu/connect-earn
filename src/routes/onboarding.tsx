@@ -1,5 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,8 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { ALL_SKILLS } from "@/lib/mock-data";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
-
-export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 
 const STEPS = ["Profile","Skills","Rate","Portfolio","Done"];
 
@@ -32,7 +29,7 @@ function Onboarding() {
   const finish = () => {
     updateUser({ title, bio, location, skills, hourlyRate: Number(rate) || 50, onboarded: true });
     toast.success("Profile created!");
-    navigate({ to: "/dashboard/freelancer" });
+    navigate("/dashboard/freelancer");
   };
 
   return (
@@ -105,3 +102,5 @@ function Onboarding() {
     </div>
   );
 }
+
+export default Onboarding;

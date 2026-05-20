@@ -1,5 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";import { useState } from "react";
 import { Briefcase, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,8 +6,6 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import type { Role } from "@/lib/types";
-
-export const Route = createFileRoute("/signup")({ component: SignupPage });
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -57,7 +54,7 @@ function SignupPage() {
     setSubmitting(false);
     if (!r.ok) { toast.error(r.error ?? "Signup failed"); return; }
     toast.success(`Welcome to Workly, ${form.name.split(" ")[0]}!`);
-    navigate({ to: role === "freelancer" ? "/onboarding" : "/dashboard/client" });
+    navigate(role === "freelancer" ? "/onboarding" : "/dashboard/client");
   };
 
   return (
@@ -92,3 +89,5 @@ function SignupPage() {
     </div>
   );
 }
+
+export default SignupPage;

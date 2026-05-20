@@ -1,5 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";import { useEffect, useState } from "react";
 import { Briefcase } from "lucide-react";
 import { storage } from "@/lib/storage";
 import { PageHeader } from "@/components/common/PageHeader";
@@ -11,15 +10,13 @@ import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import type { Proposal } from "@/lib/types";
 
-export const Route = createFileRoute("/proposals")({ component: ProposalsPage });
-
 function ProposalsPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [proposals, setProposals] = useState<Proposal[]>([]);
 
   useEffect(() => {
-    if (!user) { navigate({ to: "/login" }); return; }
+    if (!user) { navigate("/login"); return; }
     setProposals(storage.getProposals().filter((p) => p.freelancerId === user.id));
   }, [user, navigate]);
 
@@ -54,7 +51,7 @@ function ProposalsPage() {
                       <div key={p.id} className="rounded-2xl border border-border bg-card p-5">
                         <div className="flex items-start justify-between gap-4">
                           <div className="min-w-0">
-                            <Link to="/jobs/$jobId" params={{ jobId: p.jobId }} className="font-semibold text-primary hover:text-brand">{p.jobTitle}</Link>
+                            <Link to={`/jobs/${p.jobId}`} className="font-semibold text-primary hover:text-brand">{p.jobTitle}</Link>
                             <p className="mt-1 text-sm text-muted-foreground">Submitted {new Date(p.submittedAt).toLocaleDateString()} · ${p.bidAmount} · {p.estimatedDuration}</p>
                             <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{p.coverLetter}</p>
                           </div>
@@ -75,3 +72,5 @@ function ProposalsPage() {
     </>
   );
 }
+
+export default ProposalsPage;

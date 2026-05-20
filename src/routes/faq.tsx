@@ -1,15 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { PageHeader } from "@/components/common/PageHeader";
+import { Link } from "react-router-dom";import { PageHeader } from "@/components/common/PageHeader";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/faq")({
-  component: FaqPage,
-  head: () => ({ meta: [
-    { title: "FAQ — Workly" },
-    { name: "description", content: "Answers to the most common questions about hiring and freelancing on Workly." },
-  ]}),
-});
 
 const FAQS = [
   { q: "How does Workly vet freelancers?", a: "Every freelancer goes through a multi-step process: portfolio review, skills assessment, identity verification, and a short interview with our talent team. Less than 3% of applicants are accepted." },
@@ -45,3 +37,5 @@ function FaqPage() {
     </>
   );
 }
+
+export default FaqPage;
