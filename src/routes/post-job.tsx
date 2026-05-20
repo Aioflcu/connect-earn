@@ -254,3 +254,5 @@ function PostJobPage() {
     </div>
   );
 }
+
+export default PostJobPage;

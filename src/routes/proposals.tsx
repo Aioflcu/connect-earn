@@ -74,3 +74,5 @@ function ProposalsPage() {
     </>
   );
 }
+
+export default ProposalsPage;

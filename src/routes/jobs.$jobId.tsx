@@ -239,3 +239,5 @@ function ApplyButton({ job, user, onLoginNeeded }: { job: Job; user: ReturnType<
     </Dialog>
   );
 }
+
+export default JobDetailPage;

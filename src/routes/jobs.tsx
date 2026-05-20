@@ -181,3 +181,5 @@ function CheckboxRow({ id, label, checked, onChange }: { id: string; label: stri
     </div>
   );
 }
+
+export default JobsPage;

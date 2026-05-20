@@ -96,3 +96,5 @@ function FreelancersPage() {
     </>
   );
 }
+
+export default FreelancersPage;

@@ -110,3 +110,5 @@ function FreelancerDashboard() {
     </>
   );
 }
+
+export default FreelancerDashboard;
