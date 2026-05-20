@@ -6,13 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
-({
-  component: PricingPage,
-  head: () => ({ meta: [
-    { title: "Pricing — Workly" },
-    { name: "description", content: "Simple, transparent pricing for clients and freelancers. Pay only for the work you love." },
-  ]}),
-});
 
 const PLANS = [
   {

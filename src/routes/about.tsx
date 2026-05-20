@@ -3,13 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Globe2, Sparkles, ShieldCheck, HeartHandshake } from "lucide-react";
 
-({
-  component: AboutPage,
-  head: () => ({ meta: [
-    { title: "About — Workly" },
-    { name: "description", content: "Workly's mission is to connect the world's best independent talent with ambitious teams who ship." },
-  ]}),
-});
 
 const TEAM = [
   { name: "Amelia Stone", role: "CEO & Co-founder", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces" },

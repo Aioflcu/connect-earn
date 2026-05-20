@@ -8,13 +8,6 @@ import { Badge } from "@/components/ui/badge";
 
 const ICONS = { Code2, Palette, PenLine, Megaphone, BrainCircuit, Film };
 
-({
-  component: HomePage,
-  head: () => ({ meta: [
-    { title: "Workly — Hire the world's best independent talent" },
-    { name: "description", content: "The freelance marketplace where teams hire top engineers, designers, writers, and marketers. Post a job or browse 92K+ vetted freelancers." },
-  ]}),
-});
 
 function HomePage() {
   const navigate = useNavigate();

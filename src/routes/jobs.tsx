@@ -13,13 +13,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-({
-  component: JobsPage,
-  head: () => ({ meta: [
-    { title: "Browse jobs — Workly" },
-    { name: "description", content: "Browse thousands of freelance jobs across web development, design, writing, marketing, data science, and more." },
-  ]}),
-});
 
 const PAGE_SIZE = 8;
 

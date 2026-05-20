@@ -9,8 +9,6 @@ import { ALL_SKILLS } from "@/lib/mock-data";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 
-({ component: Onboarding });
-
 const STEPS = ["Profile","Skills","Rate","Portfolio","Done"];
 
 function Onboarding() {

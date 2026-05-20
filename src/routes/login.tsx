@@ -6,8 +6,6 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 
-({ component: LoginPage });
-
 function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();

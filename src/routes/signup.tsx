@@ -7,8 +7,6 @@ import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import type { Role } from "@/lib/types";
 
-({ component: SignupPage });
-
 function SignupPage() {
   const navigate = useNavigate();
   const { signup } = useAuth();

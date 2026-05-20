@@ -10,8 +10,6 @@ import { PageHeader } from "@/components/common/PageHeader";
 import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 
-({ component: SettingsPage });
-
 function SettingsPage() {
   const navigate = useNavigate();
   const { user, updateUser } = useAuth();

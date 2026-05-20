@@ -11,13 +11,6 @@ import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-({
-  component: FreelancersPage,
-  head: () => ({ meta: [
-    { title: "Browse talent — Workly" },
-    { name: "description", content: "Discover 20+ vetted freelancers across web development, design, writing, marketing, data science, and video." },
-  ]}),
-});
 
 function FreelancersPage() {
   const [loading, setLoading] = useState(true);

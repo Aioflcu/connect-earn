@@ -10,8 +10,6 @@ import { useAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import type { Proposal } from "@/lib/types";
 
-({ component: ProposalsPage });
-
 function ProposalsPage() {
   const { user } = useAuth();
   const navigate = useNavigate();

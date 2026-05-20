@@ -9,8 +9,6 @@ import { FREELANCERS } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 import type { Conversation } from "@/lib/types";
 
-({ component: MessagesPage });
-
 function seed(): Conversation[] {
   return FREELANCERS.slice(0, 5).map((f, i) => ({
     id: `c${i}`, withId: f.id, withName: f.name, withAvatar: f.avatar, online: i % 2 === 0,

@@ -9,8 +9,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
 import type { Freelancer } from "@/lib/types";
 
-({ component: FreelancerProfilePage });
-
 function FreelancerProfilePage() {
   const { id } = useParams() as Record<string, string>;
   const navigate = useNavigate();

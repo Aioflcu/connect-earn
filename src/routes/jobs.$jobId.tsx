@@ -14,8 +14,6 @@ import { useAuth } from "@/lib/auth";
 import { CardSkeleton } from "@/components/common/LoadingSkeleton";
 import type { Job } from "@/lib/types";
 
-({ component: JobDetailPage });
-
 function JobDetailPage() {
   const { jobId } = useParams() as Record<string, string>;
   const navigate = useNavigate();

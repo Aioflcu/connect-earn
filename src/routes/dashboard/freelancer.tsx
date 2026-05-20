@@ -12,8 +12,6 @@ import { JOBS } from "@/lib/mock-data";
 import { JobCard } from "@/components/jobs/JobCard";
 import type { Proposal } from "@/lib/types";
 
-({ component: FreelancerDashboard });
-
 const EARNINGS = [
   { m: "Jan", v: 1200 },{ m: "Feb", v: 1800 },{ m: "Mar", v: 2400 },
   { m: "Apr", v: 2100 },{ m: "May", v: 3200 },{ m: "Jun", v: 3800 },
